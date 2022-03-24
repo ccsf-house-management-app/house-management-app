@@ -72,20 +72,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'house_app.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'jmosuela_house_app',
-        'USER': 'jmosuela_CS195',
-        'PASSWORD': 'CS195!',
-        'HOST': 'gator4144.hostgator.com',
-        'PORT': '3306',
-    }
-}
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
