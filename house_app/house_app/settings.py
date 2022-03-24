@@ -77,11 +77,14 @@ WSGI_APPLICATION = 'house_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'jmosuela_house_app',
+        'USER': 'jmosuela_CS195',
+        'PASSWORD': 'CS195!',
+        'HOST': 'gator4144.hostgator.com',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
