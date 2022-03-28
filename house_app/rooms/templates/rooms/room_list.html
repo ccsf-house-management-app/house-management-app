@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p><strong>Available Rooms</strong></p>
+{% for instance in object_list %}
+   <ul>
+   <li>Room Name: {{ instance.roomName }} </li>
+   <li> Room ID: {{ instance.roomId }}</li>
+   <li> Description: {{ instance.roomDescription}}</li>
+   <li> Rent: {{ instance.rent }}</li>
+   <li> Capacity: {{ instance.capacity }}</li>
+   </ul>
+
+
+{% endfor %}
+
+{% endblock %}

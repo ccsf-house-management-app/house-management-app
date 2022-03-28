@@ -37,8 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'house_app_backend',  #Add This
-    'rest_framework',  #Add This
+
+     # Add this
+    'house_app_backend',
+    'rest_framework',
+    'templates',
+    'users',
+    'pages',
+    'rooms',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +62,7 @@ ROOT_URLCONF = 'house_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +76,19 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'house_app.wsgi.application'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'jmosuela_house_application',
+        'USER': 'jmosuela_CS195',
+        'PASSWORD': 'CS195!',
+        'HOST': 'gator4144.hostgator.com',
+        'PORT': '3306',
+        #'STORAGE_ENGINE': 'MyISAM / INNODB / ETC',
+        #'OPTIONS': {"init_command": "SET foreign_key_checks = 0;", },
+    }
+}
 
 
 # Password validation
@@ -117,3 +136,8 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+
+# Login
+#LOGIN_REDIRECT_URL = "home"
+#LOGOUT_REDIRECT_URL = "home"
