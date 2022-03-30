@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'users',
     'pages',
     'rooms',
+    'expenses',
+    'credits',
 ]
 
 MIDDLEWARE = [
@@ -85,8 +87,10 @@ DATABASES = {
         'PASSWORD': 'CS195!',
         'HOST': 'gator4144.hostgator.com',
         'PORT': '3306',
-        #'STORAGE_ENGINE': 'MyISAM / INNODB / ETC',
-        #'OPTIONS': {"init_command": "SET foreign_key_checks = 0;", },
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+
     }
 }
 
