@@ -5,7 +5,8 @@ from .views import(
       signin,
       signout,
       UserInfoListView,
-      UserInfoDetailView
+      UserInfoDetailView,
+      UserInfoView
 
 )
 

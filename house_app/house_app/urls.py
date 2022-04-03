@@ -20,9 +20,25 @@ from users.views import signup, signin, signout, users,UserInfoListView,UserInfo
 from pages.views import home_view
 from rooms.views import RoomAssignDetailView,RoomListView
 
+from rest_framework import routers
+from users import views
+# from rooms import views
+# from expenses import views
+# from credits import views
+# from accounts import views
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserInfoView, 'users')
+# router.register(r'rooms', views.RoomsView, 'rooms')
+# router.register(r'rooms', views.RoomsAssignView, 'rooms')
+# router.register(r'expenses', views.UtilitiesView, 'expenses')
+# router.register(r'credits', views.CreditView, 'credits')
+# router.register(r'accounts', views.AccountView, 'accounts')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
     path('', home_view, name='home'),
     path('home/', home_view, name='home'),
     # path('users/', include('users.urls')),

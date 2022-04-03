@@ -12,6 +12,15 @@ from django.views.generic import(
 from .forms import UserInfoForm
 from .models import UserInfo
 
+from rest_framework import viewsets
+from .serializers import UserInfoSerializer
+
+# Create your views here.
+
+class UserInfoView(viewsets.ModelViewSet):
+    serializer_class = UserInfoSerializer
+    queryset = UserInfo.objects.all()
+
 class UserInfoListView(ListView):
     template_name = 'userinfo_list.html' # 'users/userinfo_list.html'
     queryset= UserInfo.objects.all()

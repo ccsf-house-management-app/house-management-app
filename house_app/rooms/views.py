@@ -7,7 +7,18 @@ from django.views.generic import(
     UpdateView,
     DeleteView
 )
-# Create your views here.
+
+from rest_framework import viewsets
+from .serializers import RoomsAssignSerializer, RoomsSerializer
+
+
+class RoomsAssignView(viewsets.ModelViewSet):
+    serializer_class = RoomsAssignSerializer
+    queryset = RoomsAssign.objects.all()
+
+class RoomsView(viewsets.ModelViewSet):
+    serializer_class = RoomsSerializer
+    queryset = Rooms.objects.all()
 
 class RoomListView(ListView):
     template_name = 'rooms/room_list.html'
