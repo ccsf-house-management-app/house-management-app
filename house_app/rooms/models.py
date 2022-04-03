@@ -5,7 +5,6 @@ from users.models import UserInfo
 # Create your models here.
 
 class Rooms(models.Model):
-    # userid = models.ForeignKey('auth.User', blank=True, null=True, on_delete=models.CASCADE)
     roomId = models.CharField(blank=True, null=True, max_length=10)
     roomName = models.CharField(max_length=25)
     roomDescription = models.CharField(max_length=25)
