@@ -13,7 +13,7 @@ from .forms import UserInfoForm
 from .models import UserInfo
 
 class UserInfoListView(ListView):
-    template_name = 'users/userinfo_list.html'
+    template_name = 'userinfo_list.html' # 'users/userinfo_list.html'
     queryset= UserInfo.objects.all()
 
 class UserInfoDetailView(DetailView):
@@ -82,4 +82,5 @@ def signin(request):
 
 def signout(request):
     logout(request)
-    return redirect('/users/signin/')
+    return redirect('/users/signin')     # return redirect('signin/
+

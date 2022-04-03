@@ -16,9 +16,10 @@ class Rooms(models.Model):
     def __str__(self):
         return self.roomName
 
+
 class RoomsAssign(models.Model):
     roomid = models.ForeignKey(Rooms, blank=True, null=True, on_delete=models.CASCADE)
-    tenantid = models.ForeignKey(UserInfo, blank=True, null=True, on_delete=models.CASCADE)
+    tenantid = models.ForeignKey('auth.User', blank=True, null=True, on_delete=models.CASCADE)
     date_start = models.DateField()
     date_end = models.DateField(blank=True, null=True)
     date_transaction = models.DateField(auto_now=True)
@@ -27,3 +28,6 @@ class RoomsAssign(models.Model):
 
     def __int__(self):
         return self.tenantid
+
+    # def get_absolute_url(self):
+    #     return reverse("room-detail", kwargs={"id": seld.id})

@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 Your Room Info:
 {% block content %}
-<p>Room id: {{ object.roomid }}</p>
-<p>Tenant id: {{ object.tenantid }}</p>
+<p>Tenant id: {{ roomsassign.tenantid }}</p>
+<p>Room id: {{ roomsassign.roomid }}</p>
+<p>rent: {{ roomsassign.roomid.rent }}</p>
+
 {% endblock %}
+

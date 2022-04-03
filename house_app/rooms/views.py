@@ -15,8 +15,11 @@ class RoomListView(ListView):
 
 class RoomAssignDetailView(DetailView):
     template_name = 'rooms/roominfo_detail.html'
-    queryset = RoomsAssign.objects.all()
 
     def get_object(self):
         id_ = self.kwargs.get("tenantid")
+        queryset = RoomsAssign.objects.select_related('roomid').get(id=id_)
         return get_object_or_404(RoomsAssign, tenantid=id_)
+
+
+

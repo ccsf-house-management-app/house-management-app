@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_extensions',
+
      # Add this
     'house_app_backend',
     'rest_framework',
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'rooms',
     'expenses',
     'credits',
+    'accounts',
 ]
 
 MIDDLEWARE = [

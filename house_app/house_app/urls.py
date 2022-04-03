@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
     path('home/', home_view, name='home'),
-   # path('users/', include('users.urls')),
+    # path('users/', include('users.urls')),
     path('users/', users),
     path('users/signup/', signup, name='signup'),
     path('users/signin/', signin, name='login'),
@@ -33,6 +33,7 @@ urlpatterns = [
     path('', UserInfoListView.as_view(), name='userinfo-list'),
     path('users/<int:userid>/', UserInfoDetailView.as_view(), name='userinfo-detail'),
     path('rooms/', RoomListView.as_view(), name='room-list'),
+  #  path('rooms/<int:tenantid>/', RoomAssignDetailView.as_view(), name='room-detail'),
     path('rooms/<int:tenantid>/', RoomAssignDetailView.as_view(), name='room-detail'),
 
 ]
