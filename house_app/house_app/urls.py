@@ -16,20 +16,20 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from users.views import signup, signin, signout, users,UserInfoListView,UserInfoDetailView
+from users.views import signup, signin, signout, users,UserInfoListView,UserInfoDetailView, UserInfoView
 from pages.views import home_view
-from rooms.views import RoomAssignDetailView,RoomListView
+from rooms.views import RoomAssignDetailView,RoomListView, RoomsView
 
 from rest_framework import routers
-from users import views
+# from users import views
 # from rooms import views
 # from expenses import views
 # from credits import views
 # from accounts import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserInfoView, 'users')
-# router.register(r'rooms', views.RoomsView, 'rooms')
+router.register(r'users', UserInfoView, 'users')
+router.register(r'rooms', RoomsView, 'rooms')
 # router.register(r'rooms', views.RoomsAssignView, 'rooms')
 # router.register(r'expenses', views.UtilitiesView, 'expenses')
 # router.register(r'credits', views.CreditView, 'credits')
