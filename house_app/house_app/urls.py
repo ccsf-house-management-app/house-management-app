@@ -18,7 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from users.views import signup, signin, signout, users,UserInfoListView,UserInfoDetailView, UserInfoView
 from pages.views import home_view
-from rooms.views import RoomAssignDetailView,RoomListView, RoomsView
+from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView
+from expenses.views import UtilitiesView
+from credits.views import CreditView
+from accounts.view import AccountView
 
 from rest_framework import routers
 # from users import views
@@ -30,10 +33,10 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register(r'users', UserInfoView, 'users')
 router.register(r'rooms', RoomsView, 'rooms')
-# router.register(r'rooms', views.RoomsAssignView, 'rooms')
-# router.register(r'expenses', views.UtilitiesView, 'expenses')
-# router.register(r'credits', views.CreditView, 'credits')
-# router.register(r'accounts', views.AccountView, 'accounts')
+router.register(r'roomassign', RoomsAssignView, 'roomassign')
+router.register(r'expenses', UtilitiesView, 'expenses')
+router.register(r'credits', CreditView, 'credits')
+router.register(r'accounts', AccountView, 'accounts')
 
 
 urlpatterns = [
