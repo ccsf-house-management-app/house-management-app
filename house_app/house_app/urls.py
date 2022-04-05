@@ -21,14 +21,9 @@ from pages.views import home_view
 from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView
 from expenses.views import UtilitiesView
 from credits.views import CreditView
-from accounts.view import AccountView
+from accounts.views import AccountView
 
 from rest_framework import routers
-# from users import views
-# from rooms import views
-# from expenses import views
-# from credits import views
-# from accounts import views
 
 router = routers.DefaultRouter()
 router.register(r'users', UserInfoView, 'users')
