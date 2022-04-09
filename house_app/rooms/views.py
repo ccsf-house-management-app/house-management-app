@@ -9,7 +9,7 @@ from django.views.generic import(
 )
 
 from rest_framework import viewsets
-from .serializers import RoomsAssignSerializer, RoomsSerializer
+from .serializers import RoomsAssignSerializer, RoomsSerializer, TenantRoomSerializer
 
 
 class RoomsAssignView(viewsets.ModelViewSet):
@@ -19,6 +19,11 @@ class RoomsAssignView(viewsets.ModelViewSet):
 class RoomsView(viewsets.ModelViewSet):
     serializer_class = RoomsSerializer
     queryset = Rooms.objects.all()
+
+class TenantRoomView(viewsets.ModelViewSet):
+    serializer_class = TenantRoomSerializer
+    def get_queryset(self):
+        queryset = RoomsAssign.objects.select_related('roomid').all()
 
 class RoomListView(ListView):
     template_name = 'rooms/room_list.html'

@@ -10,3 +10,9 @@ class RoomsAssignSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoomsAssign
         fields = ( 'roomid', 'tenantid', 'date_start', 'date_end', 'date_transaction', 'transactionId', 'remarks')
+
+class TenantRoomSerializer(serializers.ModelSerializer):
+    tenant = RoomsAssignSerializer(read_only=False)
+    class Meta:
+        model = Rooms
+        fields = ('roomName', 'tenant')
