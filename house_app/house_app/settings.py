@@ -53,9 +53,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -145,6 +145,19 @@ try:
 except ImportError:
     pass
 
+# CORS_ORIGIN_WHITELIST = [
+#      'http://localhost:3000'
+# ]
+ALLOWED_HOSTS = ['http://localhost:3000/',
+                 "http://127.0.0.1", "localhost", 
+                 "127.0.0.1", "http://127.0.0.1:8000",
+                 "http://localhost"]
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
+    'http://localhost',
+    'http://localhost:3000',
+    'http://127.0.0.1:8000',
+    'http://localhost:3000',
+    'http://localhost:8000'
 ]
