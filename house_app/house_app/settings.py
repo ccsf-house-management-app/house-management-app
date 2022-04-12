@@ -52,9 +52,9 @@ INSTALLED_APPS = [
     'accounts',
 ]
 
-MIDDLEWARE = [
-    'django.middleware.common.CommonMiddleware',
+MIDDLEWARE = [ 
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -152,8 +152,9 @@ ALLOWED_HOSTS = ['http://localhost:3000/',
                  "http://127.0.0.1", "localhost", 
                  "127.0.0.1", "http://127.0.0.1:8000",
                  "http://localhost"]
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ALLOW_CREDENTIALS = True
+# ALLOWED_HOSTS = []
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
     'http://localhost',
     'http://localhost:3000',
@@ -161,3 +162,8 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'http://localhost:8000'
 ]
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000'
+# ]
