@@ -29,7 +29,7 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register(r'login', UserViewSet, 'login')
 router.register(r'users', UserInfoView, 'users')
-router.register(r'users/<int:userid>', UserInfoDetailsView, 'user')
+# router.register(r'users/<int:userid>', UserInfoDetailsView, 'user')
 router.register(r'rooms', RoomsView, 'rooms')
 router.register(r'roomassign', RoomsAssignView, 'roomassign')
 router.register(r'tenant', TenantRoomView, 'tenant')
