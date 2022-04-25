@@ -10,7 +10,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        migrations.swappable_dependency(
+            settings.AUTH_USER_MODEL), ('house_app_users', '0001_initial')
     ]
 
     operations = [
@@ -24,7 +25,7 @@ class Migration(migrations.Migration):
                 ('email', models.EmailField(max_length=30)),
                 ('phone', models.CharField(max_length=10)),
                 ('date_created', models.DateField()),
-                ('userid', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                # ('userid', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

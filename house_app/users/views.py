@@ -14,7 +14,6 @@ from django.views.generic import(
 )
 from .forms import UserInfoForm
 from .models import UserInfo
-from house_app_users.models import HouseAppUser
 from rest_framework import viewsets
 from .serializers import UserInfoSerializer, UserSerializer
 

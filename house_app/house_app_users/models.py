@@ -6,6 +6,10 @@ from django.contrib.auth.models import AbstractUser
 
 
 class HouseAppUser(AbstractUser):
-    pass
-    # class Meta:
-    #     db_table = 'auth_user'
+    # pass
+    class Meta:
+        db_table = 'houseappusers'
+        managed = True
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
+        abstract = False
