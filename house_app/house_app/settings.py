@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django_extensions',
 
      # Add this
-    'house_app_backend',
     'rest_framework',
     'corsheaders',
     'templates',
@@ -50,7 +49,10 @@ INSTALLED_APPS = [
     'expenses',
     'credits',
     'accounts',
+    'house_app_users'
 ]
+
+AUTH_USER_MODEL = 'house_app_users.HouseAppUser'
 
 MIDDLEWARE = [ 
     'corsheaders.middleware.CorsMiddleware',

@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.views import View
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic import(
     CreateView,
@@ -12,10 +14,15 @@ from django.views.generic import(
 )
 from .forms import UserInfoForm
 from .models import UserInfo
+from house_app_users.models import HouseAppUser
 from rest_framework import viewsets
 from .serializers import UserInfoSerializer, UserSerializer
 
 # Create your views here.
+
+User = get_user_model()
+# User = settings.AUTH_USER_MODEL
+
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = UserSerializer

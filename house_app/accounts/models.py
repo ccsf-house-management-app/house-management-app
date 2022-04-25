@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils.dates import MONTHS
 
@@ -20,7 +21,9 @@ YEAR = (
 class Account(models.Model):
     formonth = models.IntegerField(blank=True, null=True, choices=MONTHS.items())
     foryear = models.CharField(blank=True, null=True, choices=YEAR, max_length=4, default='2022')
-    user= models.ForeignKey('auth.User', blank=True, null=True, on_delete=models.CASCADE)
+    # user= models.ForeignKey('auth.User', blank=True, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             blank=True, null=True, on_delete=models.CASCADE)
     bill_type = models.CharField(max_length=10, choices=BILL_TYPE, default='All')
     accountid = models.CharField(max_length=25)
     paidamount = models.DecimalField(max_digits=6, decimal_places=2)
