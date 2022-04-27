@@ -30,5 +30,21 @@ class RoomsAssign(models.Model):
     def __int__(self):
         return self.tenantid
 
-    # def get_absolute_url(self):
-    #     return reverse("room-detail", kwargs={"id": seld.id})
+class JoinRoom(models.Model):
+    id=models.IntegerField(primary_key=True)
+    roomid = models.ForeignKey(Rooms, blank=True, null=True, on_delete=models.CASCADE)
+    tenantid = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
+    date_start = models.DateField(blank=True, null=True)
+    date_end = models.DateField(blank=True, null=True)
+    date_transaction = models.DateField(auto_now=True)
+    transactionId = models.CharField(max_length=25,null=True)
+    remarks = models.TextField(max_length=200, null=True)
+    roomName = models.CharField(max_length=25, null=True)
+    roomDescription = models.CharField(max_length=25, null=True)
+    rent = models.DecimalField(max_digits=6, decimal_places=2)
+    capacity = models.IntegerField(blank=True, null=True)
+    date_created = models.DateField(blank=True, null=True)
+    firstname = models.CharField(max_length=25, default='your first name')
+    lastname = models.CharField(max_length=25, default='your last name')
+
+

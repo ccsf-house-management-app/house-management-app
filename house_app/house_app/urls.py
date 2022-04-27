@@ -17,10 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 # from house_app import house_app_users
-#from administration import views
+# from administration import views
 from users.views import signup, signin, signout, users,UserInfoListView,UserInfoDetailView, UserInfoView,UserInfoDetailsView,UserViewSet
 from pages.views import home_view
-from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView,TenantRoomView
+from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView,TenantRoomView,JoinRoomView
 from expenses.views import UtilitiesView
 from credits.views import CreditView
 from accounts.views import AccountView
@@ -38,6 +38,7 @@ router.register(r'users', UserInfoView, 'users')
 # router.register(r'users/<int:userid>', UserInfoDetailsView, 'user')
 router.register(r'rooms', RoomsView, 'rooms')
 router.register(r'roomassign', RoomsAssignView, 'roomassign')
+router.register(r'joinroom', JoinRoomView, 'joinroom')
 router.register(r'tenant', TenantRoomView, 'tenant')
 router.register(r'expenses', UtilitiesView, 'expenses')
 router.register(r'credits', CreditView, 'credits')
