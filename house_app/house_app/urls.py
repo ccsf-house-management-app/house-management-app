@@ -16,6 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+# from house_app_users import urls as houseAppURLs
 # from house_app import house_app_users
 # from administration import views
 from users.views import signup, signin, signout, users,UserInfoListView,UserInfoDetailView, UserInfoView,UserInfoDetailsView,UserViewSet
@@ -25,7 +26,7 @@ from expenses.views import UtilitiesView
 from credits.views import CreditView
 from accounts.views import AccountView
 
-from house_app_users.views import MyTokenObtainPairView, RegisterView
+from house_app_users.views import MyTokenObtainPairView, RegisterView, testEndPoint, MyTokenRefresh
 
 from rest_framework import routers
 from rest_framework_simplejwt.views import (
@@ -34,7 +35,7 @@ from rest_framework_simplejwt.views import (
 
 router = routers.DefaultRouter()
 # router.register(r'login', UserViewSet, 'login')
-router.register(r'users', UserInfoView, 'users')
+router.register(r'users', UserInfoView, basename='users')
 # router.register(r'users/<int:userid>', UserInfoDetailsView, 'user')
 router.register(r'rooms', RoomsView, 'rooms')
 router.register(r'roomassign', RoomsAssignView, 'roomassign')
@@ -43,6 +44,9 @@ router.register(r'tenant', TenantRoomView, 'tenant')
 router.register(r'expenses', UtilitiesView, 'expenses')
 router.register(r'credits', CreditView, 'credits')
 router.register(r'accounts', AccountView, 'accounts')
+# router.register(r'token', MyTokenObtainPairView, 'token_obtain_pair'),
+router.register(r'token/refresh', MyTokenRefresh, 'token_refresh'),
+router.register(r'register', RegisterView, 'auth_register')
 # router.register(
 #     r'token', MyTokenObtainPairView, basename="token")
 
@@ -55,10 +59,12 @@ additional_routes = [
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('api/', include(houseAppURLs.urlpatterns)),
     path('api/', include(router.urls)),
     path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/',  TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/register/', RegisterView.as_view(), name='auth_register'),
+    # path('api/token/refresh/',  TokenRefreshView.as_view(), name='token_refresh'),
+    # path('api/register/', RegisterView.as_view(), name='auth_register'),
+    path('api/test/', testEndPoint, name='test'),
     path('', home_view, name='home'),
     path('home/', home_view, name='home'),
     # path('users/', include('users.urls')),
