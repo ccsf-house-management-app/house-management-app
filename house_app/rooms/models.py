@@ -7,11 +7,11 @@ from users.models import UserInfo
 
 class Rooms(models.Model):
     roomId = models.CharField(blank=True, null=True, max_length=10)
-    roomName = models.CharField(max_length=25)
-    roomDescription = models.CharField(max_length=25)
-    rent = models.DecimalField(max_digits=6, decimal_places=2)
+    roomName = models.CharField(blank=True, null=True, max_length=25)
+    roomDescription = models.CharField(blank=True, null=True, max_length=25)
+    rent = models.DecimalField(blank=True, null=True, max_digits=6, decimal_places=2)
     capacity = models.IntegerField(blank=True, null=True)
-    date_created = models.DateField()
+    date_created = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.roomName
@@ -21,11 +21,11 @@ class RoomsAssign(models.Model):
     roomid = models.ForeignKey(Rooms, blank=True, null=True, on_delete=models.CASCADE)
     # tenantid = models.ForeignKey('auth.User', blank=True, null=True, on_delete=models.CASCADE)
     tenantid = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
-    date_start = models.DateField()
+    date_start = models.DateField(blank=True, null=True)
     date_end = models.DateField(blank=True, null=True)
     date_transaction = models.DateField(auto_now=True)
-    transactionId = models.CharField(max_length=25)
-    remarks = models.TextField(max_length=200)
+    transactionId = models.CharField(blank=True, null=True, max_length=25)
+    remarks = models.TextField(blank=True, null=True, max_length=200)
 
     def __int__(self):
         return self.tenantid

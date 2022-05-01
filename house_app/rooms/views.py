@@ -17,9 +17,11 @@ class RoomsAssignView(viewsets.ModelViewSet):
     serializer_class = RoomsAssignSerializer
     queryset = RoomsAssign.objects.all()
 
+
 class RoomsView(viewsets.ModelViewSet):
     serializer_class = RoomsSerializer
     queryset = Rooms.objects.all()
+
 
 class JoinRoomView(viewsets.ModelViewSet):
     queryset = JoinRoom.objects.raw('SELECT rooms_roomsassign.id, rooms_roomsassign.roomid_id, rooms_roomsassign.tenantid_id, rooms_roomsassign.date_start, rooms_roomsassign.date_end, rooms_roomsassign.date_transaction,rooms_roomsassign.transactionId, rooms_roomsassign.remarks, rooms_rooms.roomName, rooms_rooms.roomDescription, rooms_rooms.rent, rooms_rooms.capacity, rooms_rooms.date_created, users_userinfo.firstname, users_userinfo.lastname FROM rooms_roomsassign INNER JOIN rooms_rooms ON rooms_roomsassign.roomid_id = rooms_rooms.id INNER JOIN users_userinfo ON rooms_roomsassign.tenantid_id=users_userinfo.userid_id')
@@ -43,6 +45,7 @@ class JoinRoomView(viewsets.ModelViewSet):
 class TenantRoomView(viewsets.ModelViewSet):
     queryset=RoomsAssign.objects.all()
     serializer_class=TenantRoomSerializer
+
     # process=Rooms.objects.all
     # serializer_class = RoomsAssignSerializer(process, many=True)
 

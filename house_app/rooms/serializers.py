@@ -18,11 +18,11 @@ class JoinRoomSerializer(serializers.ModelSerializer):
         model = JoinRoom
         fields = ( 'id','roomid', 'tenantid', 'date_start', 'date_end', 'date_transaction', 'transactionId', 'remarks', 'roomName', 'roomDescription', 'rent', 'capacity', 'date_created', 'firstname','lastname')
 
-class TenantRoomSerializer(serializers.ModelSerializer):
+class TenantRoomSerializer(serializers.Serializer):
     # rooms = RoomsSerializer(many=True)
     # roomsassign = RoomsAssignSerializer(many=True)
-    tenant = RoomsAssignSerializer(read_only=False)
-    #tenant=serializers.StringRelatedField(many=True)
+    roomid = RoomsAssignSerializer()
+    #tenant = serializers.StringRelatedField(many=True)
     class Meta:
         model = Rooms
-        fields = ('roomId', 'tenant')
+        fields = ('roomId', 'roomName', 'roomDescription', 'rent', 'capacity', 'date_created', 'roomid')
