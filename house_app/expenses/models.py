@@ -3,18 +3,18 @@ from django.utils.dates import MONTHS
 
 # Create your models here.
 UTILITY_TYPE = (
-    ('a', 'PGE'),
-    ('b', 'Water'),
-    ('c','TV/Cable'),
-    ('d', 'WIFI'),
-    ('e', 'Groceries'),
-    ('f', 'Other')
+    ('PGE', 'PGE'),
+    ('Water', 'Water'),
+    ('TvCable','TV/Cable'),
+    ('WIFI', 'WIFI'),
+    ('Groceries', 'Groceries'),
+    ('Other', 'Other')
 )
 
 YEAR = (
-    ('a','2022'),
-    ('b','2023'),
-    ('c','2024'),
+    ('2022','2022'),
+    ('2023','2023'),
+    ('2024','2024'),
 )
 
 class Utilities(models.Model):
