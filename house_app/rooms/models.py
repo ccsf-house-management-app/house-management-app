@@ -1,7 +1,14 @@
 from django.conf import settings
 from django.db import models
-
+from django.utils.dates import MONTHS
 from users.models import UserInfo
+
+
+YEAR = (
+    ('2022','2022'),
+    ('2023','2023'),
+    ('2024','2024'),
+)
 
 # Create your models here.
 
@@ -26,6 +33,8 @@ class RoomsAssign(models.Model):
     date_transaction = models.DateField(auto_now=True)
     transactionId = models.CharField(blank=True, null=True, max_length=25)
     remarks = models.TextField(blank=True, null=True, max_length=200)
+    formonth = models.IntegerField(blank=True, null=True, choices=MONTHS.items())
+    foryear = models.CharField(blank=True, null=True, choices=YEAR, max_length=4, default='2022')
 
     def __int__(self):
         return self.tenantid
@@ -46,5 +55,12 @@ class JoinRoom(models.Model):
     date_created = models.DateField(blank=True, null=True)
     firstname = models.CharField(max_length=25, default='your first name')
     lastname = models.CharField(max_length=25, default='your last name')
+
+class MonthlyTenant(models.Model):
+    id = models.IntegerField(primary_key=True)
+    formonth = models.IntegerField(blank=True, null=True, choices=MONTHS.items())
+    foryear = models.CharField(blank=True, null=True, choices=YEAR, max_length=4, default='2022')
+    tenants = models.IntegerField(blank=True, null=True)
+    monthly_tenants = models.IntegerField(blank=True, null=True)
 
 

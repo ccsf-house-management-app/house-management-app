@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework.response import Response
-from .models import RoomsAssign, Rooms, JoinRoom
+from django.db.models.functions import ExtractMonth, ExtractYear
+from django.db.models import Sum, Count, F, Window
+from .models import RoomsAssign, Rooms, JoinRoom, MonthlyTenant
 from users.models import UserInfo
 from django.views.generic import(
     CreateView,
@@ -10,7 +12,7 @@ from django.views.generic import(
     DeleteView
 )
 from rest_framework import viewsets
-from .serializers import RoomsAssignSerializer, RoomsSerializer, TenantRoomSerializer, JoinRoomSerializer
+from .serializers import RoomsAssignSerializer, RoomsSerializer, TenantRoomSerializer, JoinRoomSerializer, MonthlyTenantSerializer
 
 
 class RoomsAssignView(viewsets.ModelViewSet):
@@ -27,27 +29,15 @@ class JoinRoomView(viewsets.ModelViewSet):
     queryset = JoinRoom.objects.raw('SELECT rooms_roomsassign.id, rooms_roomsassign.roomid_id, rooms_roomsassign.tenantid_id, rooms_roomsassign.date_start, rooms_roomsassign.date_end, rooms_roomsassign.date_transaction,rooms_roomsassign.transactionId, rooms_roomsassign.remarks, rooms_rooms.roomName, rooms_rooms.roomDescription, rooms_rooms.rent, rooms_rooms.capacity, rooms_rooms.date_created, users_userinfo.firstname, users_userinfo.lastname FROM rooms_roomsassign INNER JOIN rooms_rooms ON rooms_roomsassign.roomid_id = rooms_rooms.id INNER JOIN users_userinfo ON rooms_roomsassign.tenantid_id=users_userinfo.userid_id')
     serializer_class = JoinRoomSerializer
 
-# class TenantRoomView(viewsets.ModelViewSet):
-#     serializer_class = TenantRoomSerializer
-#     def get_queryset(self):
-#         queryset = RoomsAssign.objects.select_related('roomid').all()
+class MonthlyTenantView(viewsets.ModelViewSet):
+    queryset = MonthlyTenant.objects.raw('SELECT rooms_roomsassign.id, rooms_roomsassign.formonth AS formonth,rooms_roomsassign.foryear AS foryear, COUNT(DISTINCT(rooms_roomsassign.tenantid_id)) AS tenants, COUNT(rooms_roomsassign.date_start) as monthly_tenants FROM rooms_roomsassign WHERE rooms_roomsassign.date_end IS NULL GROUP BY rooms_roomsassign.formonth, rooms_roomsassign.foryear')
+    serializer_class = MonthlyTenantSerializer
+    #queryset = MonthlyTenant.objects.raw('set @csum:=0; Select id, month, year, tenants, (@csum:=@csum+tenants) as monthly_tenants from ( SELECT rooms_roomsassign.id AS id, COUNT(DISTINCT(rooms_roomsassign.tenantid_id)) AS tenants, MONTH(rooms_roomsassign.date_start) AS month, YEAR(rooms_roomsassign.date_start) AS year FROM rooms_roomsassign WHERE rooms_roomsassign.date_end IS NULL GROUP BY MONTH(rooms_roomsassign.date_start), Year(rooms_roomsassign.date_start)) As temp1')
 
-# class TenantRoomView(viewsets.ViewSet):
-#
-#     def list(self, request):
-#         tenantRoom = TenantRoom(
-#             rooms=Rooms.objects.all(),
-#             roomsassign=RoomsAssign.objects.all(),
-#         )
-#         serializer = TenantRoomSerializer(tenantRoom)
-#         return Response(serializer.data)
 
 class TenantRoomView(viewsets.ModelViewSet):
     queryset=RoomsAssign.objects.all()
     serializer_class=TenantRoomSerializer
-
-    # process=Rooms.objects.all
-    # serializer_class = RoomsAssignSerializer(process, many=True)
 
 class RoomListView(ListView):
     template_name = 'rooms/room_list.html'

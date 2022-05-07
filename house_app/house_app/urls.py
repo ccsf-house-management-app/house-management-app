@@ -21,9 +21,9 @@ from django.urls import path, include
 # from administration import views
 from users.views import signup, signin, signout, users,UserInfoListView,UserInfoDetailView, UserInfoView,UserInfoDetailsView,UserViewSet
 from pages.views import home_view
-from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView,TenantRoomView,JoinRoomView
-from expenses.views import UtilitiesView, MonthlyDueView
-from credits.views import CreditView
+from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView,TenantRoomView,JoinRoomView, MonthlyTenantView
+from expenses.views import UtilitiesView, MonthlyDueView, TotalDuePerMonthView
+from credits.views import CreditView, OtherCreditView
 from accounts.views import AccountView
 
 from house_app_users.views import MyTokenObtainPairView, RegisterView, testEndPoint, MyTokenRefresh
@@ -42,8 +42,11 @@ router.register(r'roomassign', RoomsAssignView, 'roomassign')
 router.register(r'joinroom', JoinRoomView, 'joinroom')
 router.register(r'tenant', TenantRoomView, 'tenant')
 router.register(r'expenses', UtilitiesView, 'expenses')
+router.register(r'monthlytenant', MonthlyTenantView, 'monthly_tenant')
 router.register(r'monthlydue', MonthlyDueView, 'monthly_due')
+router.register(r'totalduepermonth', TotalDuePerMonthView, 'total_monthly_due')
 router.register(r'credits', CreditView, 'credits')
+router.register(r'othercredit', OtherCreditView, 'othercredit')
 router.register(r'accounts', AccountView, 'accounts')
 # router.register(r'token', MyTokenObtainPairView, 'token_obtain_pair'),
 router.register(r'token/refresh', MyTokenRefresh, 'token_refresh'),

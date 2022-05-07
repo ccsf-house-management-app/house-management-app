@@ -30,3 +30,8 @@ class Utilities(models.Model):
     def __str__(self):
         return self.utname
 
+class DuePerTenant(models.Model):
+    id = models.IntegerField(primary_key=True)
+    formonth = models.IntegerField(blank=True, null=True, choices=MONTHS.items())
+    foryear = models.CharField(blank=True, null=True, choices=YEAR, max_length=4, default='2022')
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
