@@ -35,3 +35,12 @@ class DuePerTenant(models.Model):
     formonth = models.IntegerField(blank=True, null=True, choices=MONTHS.items())
     foryear = models.CharField(blank=True, null=True, choices=YEAR, max_length=4, default='2022')
     amount = models.DecimalField(max_digits=6, decimal_places=2)
+
+class MonthlyDuePerTenant(models.Model):
+    id = models.IntegerField(primary_key=True)
+    monthly_due = models.DecimalField(max_digits=6, decimal_places=2)
+    monthly_tenants = models.IntegerField(blank=True, null=True)
+    dues_perTenant = models.DecimalField(max_digits=6, decimal_places=2)
+    formonth = models.IntegerField(blank=True, null=True, choices=MONTHS.items())
+    foryear = models.CharField(blank=True, null=True, choices=YEAR, max_length=4, default='2022')
+

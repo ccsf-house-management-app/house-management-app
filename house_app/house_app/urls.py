@@ -22,7 +22,7 @@ from django.urls import path, include
 from users.views import signup, signin, signout, users,UserInfoListView,UserInfoDetailView, UserInfoView,UserInfoDetailsView,UserViewSet
 from pages.views import home_view
 from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView,TenantRoomView,JoinRoomView, MonthlyTenantView
-from expenses.views import UtilitiesView, MonthlyDueView, TotalDuePerMonthView
+from expenses.views import UtilitiesView, MonthlyDueView, TotalDuePerMonthView, MonthlyDuePerTenantView
 from credits.views import CreditView, OtherCreditView
 from accounts.views import AccountView
 
@@ -45,6 +45,7 @@ router.register(r'expenses', UtilitiesView, 'expenses')
 router.register(r'monthlytenant', MonthlyTenantView, 'monthly_tenant')
 router.register(r'monthlydue', MonthlyDueView, 'monthly_due')
 router.register(r'totalduepermonth', TotalDuePerMonthView, 'total_monthly_due')
+router.register(r'duepertenant', MonthlyDuePerTenantView, 'total_monthly_due_per_Tenant')
 router.register(r'credits', CreditView, 'credits')
 router.register(r'othercredit', OtherCreditView, 'othercredit')
 router.register(r'accounts', AccountView, 'accounts')
