@@ -30,9 +30,8 @@ class JoinRoomView(viewsets.ModelViewSet):
     serializer_class = JoinRoomSerializer
 
 class MonthlyTenantView(viewsets.ModelViewSet):
-    queryset = MonthlyTenant.objects.raw('SELECT rooms_roomsassign.id, rooms_roomsassign.formonth AS formonth,rooms_roomsassign.foryear AS foryear, COUNT(DISTINCT(rooms_roomsassign.tenantid_id)) AS tenants, COUNT(rooms_roomsassign.date_start) as monthly_tenants FROM rooms_roomsassign WHERE rooms_roomsassign.date_end IS NULL GROUP BY rooms_roomsassign.formonth, rooms_roomsassign.foryear')
     serializer_class = MonthlyTenantSerializer
-    #queryset = MonthlyTenant.objects.raw('set @csum:=0; Select id, month, year, tenants, (@csum:=@csum+tenants) as monthly_tenants from ( SELECT rooms_roomsassign.id AS id, COUNT(DISTINCT(rooms_roomsassign.tenantid_id)) AS tenants, MONTH(rooms_roomsassign.date_start) AS month, YEAR(rooms_roomsassign.date_start) AS year FROM rooms_roomsassign WHERE rooms_roomsassign.date_end IS NULL GROUP BY MONTH(rooms_roomsassign.date_start), Year(rooms_roomsassign.date_start)) As temp1')
+    queryset = MonthlyTenant.objects.raw('Select id, formonth, foryear, tenants, (@csum := @csum + tenants) as monthly_tenants from ( SELECT rooms_roomsassign.id AS id, COUNT(DISTINCT(rooms_roomsassign.tenantid_id)) AS tenants, rooms_roomsassign.formonth AS formonth, rooms_roomsassign.foryear AS foryear FROM rooms_roomsassign WHERE rooms_roomsassign.date_end IS NULL GROUP BY rooms_roomsassign.formonth, rooms_roomsassign.foryear ) As temp JOIN (SELECT @csum:=0) AS temp2')
 
 
 class TenantRoomView(viewsets.ModelViewSet):
