@@ -8,6 +8,7 @@ from credits.models import Credit
 from users.models import UserInfo
 from django.db.models import Sum, Count
 from itertools import chain
+import requests
 from django.views.generic import(
     CreateView,
     DetailView,
@@ -45,4 +46,7 @@ class TotalDuePerMonthDetailView(ListView):
     template_name = 'expenses/utility_detail.html'
     queryset = MonthlyDuePerTenant.objects.raw('select id, monthly_due, monthly_tenants, (monthly_due/monthly_tenants) as dues_perTenant, formonth, foryear from (select id, month, year, tenants, (@csum := @csum + tenants) as monthly_tenants from ( SELECT rooms_roomsassign.id, COUNT(DISTINCT(rooms_roomsassign.tenantid_id)) AS tenants, rooms_roomsassign.formonth AS month, rooms_roomsassign.foryear AS year FROM rooms_roomsassign WHERE rooms_roomsassign.date_end  IS NULL GROUP BY rooms_roomsassign.formonth, rooms_roomsassign.foryear) As temp JOIN (SELECT @csum:=0) AS temp2) as t JOIN (SELECT SUM(amount) as monthly_due, formonth, foryear from (SELECT SUM(expenses_utilities.amount) as amount, expenses_utilities.formonth, expenses_utilities.foryear FROM expenses_utilities GROUP BY expenses_utilities.formonth, expenses_utilities.foryear UNION SELECT SUM(credits_credit.cramount) as amount, credits_credit.formonth, credits_credit.foryear FROM credits_credit GROUP BY credits_credit.formonth, credits_credit.foryear) as temp GROUP BY formonth, foryear) as a ON t.month=a.formonth AND t.year=a.foryear')
 
-
+def monthlydues(request):
+    displaytable=requests.get('http://127.0.0.1:8000/api/monthlytotal/')
+    result=displaytable.json()
+    return render(request,"expenses/monthlytotal.html", {"MonthlyTotal":result})

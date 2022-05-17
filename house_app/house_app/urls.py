@@ -22,7 +22,7 @@ from django.urls import path, include
 from users.views import signup, signin, signout, users,UserInfoListView,UserInfoDetailView, UserInfoView,UserInfoDetailsView,UserViewSet
 from pages.views import home_view
 from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView,TenantRoomView,JoinRoomView, MonthlyTenantView, show
-from expenses.views import UtilitiesView, MonthlyDueView, TotalDuePerMonthView, MonthlyDuePerTenantView,TotalDuePerMonthDetailView, MonthlyTotalView
+from expenses.views import UtilitiesView, MonthlyDueView, TotalDuePerMonthView, MonthlyDuePerTenantView,TotalDuePerMonthDetailView, MonthlyTotalView, monthlydues
 from credits.views import CreditView, OtherCreditView
 from accounts.views import AccountView,AccountDetailView
 
@@ -84,6 +84,7 @@ urlpatterns = [
     path('rooms/show', show, name='show'),
     path('rooms/<int:tenantid>/', RoomAssignDetailView.as_view(), name='room-detail'),
     path('expenses/', TotalDuePerMonthDetailView.as_view(), name='utility-detail'),
+    path('expenses/monthlydues', monthlydues, name='monthlydues'),
     path('accounts/<int:user>/', AccountDetailView.as_view(), name='account-detail'),
 
 ]
