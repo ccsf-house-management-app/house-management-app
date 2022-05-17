@@ -1,11 +1,14 @@
 from rest_framework import serializers
 from .models import Rooms, RoomsAssign, JoinRoom, MonthlyTenant
 from users.models import UserInfo
+from users.serializers import UserSerializer
+
 
 class RoomsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rooms
-        fields = ( 'roomId', 'roomName', 'roomDescription', 'rent', 'capacity', 'date_created' )
+        fields = ('roomId', 'roomName', 'roomDescription',
+                  'rent', 'capacity', 'date_created')
 
 class RoomsAssignSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,13 +22,11 @@ class JoinRoomSerializer(serializers.ModelSerializer):
         fields = ( 'id','roomid', 'tenantid', 'date_start', 'date_end', 'date_transaction', 'transactionId', 'remarks', 'roomName', 'roomDescription', 'rent', 'capacity', 'date_created', 'firstname','lastname')
 
 class TenantRoomSerializer(serializers.Serializer):
-    # rooms = RoomsSerializer(many=True)
-    # roomsassign = RoomsAssignSerializer(many=True)
-    roomid = RoomsAssignSerializer()
-    #tenant = serializers.StringRelatedField(many=True)
+    roomid = RoomsSerializer()
+    # tenantid = UserSerializer()
     class Meta:
-        model = Rooms
-        fields = ('roomId', 'roomName', 'roomDescription', 'rent', 'capacity', 'date_created', 'roomid')
+        model = RoomsAssign
+        fields = ('tenantid','roomid')
 
 class MonthlyTenantSerializer(serializers.ModelSerializer):
     class Meta:

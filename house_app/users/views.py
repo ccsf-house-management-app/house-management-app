@@ -15,6 +15,7 @@ from django.views.generic import(
 from .forms import UserInfoForm
 from .models import UserInfo
 from rest_framework import viewsets
+from rest_framework.generics import ListCreateAPIView
 from .serializers import UserInfoSerializer, UserSerializer
 
 # Create your views here.

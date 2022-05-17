@@ -21,10 +21,10 @@ from django.urls import path, include
 # from administration import views
 from users.views import signup, signin, signout, users,UserInfoListView,UserInfoDetailView, UserInfoView,UserInfoDetailsView,UserViewSet
 from pages.views import home_view
-from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView,TenantRoomView,JoinRoomView, MonthlyTenantView
-from expenses.views import UtilitiesView, MonthlyDueView, TotalDuePerMonthView, MonthlyDuePerTenantView
+from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView,TenantRoomView,JoinRoomView, MonthlyTenantView, show
+from expenses.views import UtilitiesView, MonthlyDueView, TotalDuePerMonthView, MonthlyDuePerTenantView,TotalDuePerMonthDetailView, MonthlyTotalView
 from credits.views import CreditView, OtherCreditView
-from accounts.views import AccountView
+from accounts.views import AccountView,AccountDetailView
 
 from house_app_users.views import MyTokenObtainPairView, RegisterView, testEndPoint, MyTokenRefresh
 
@@ -49,6 +49,7 @@ router.register(r'duepertenant', MonthlyDuePerTenantView, 'total_monthly_due_per
 router.register(r'credits', CreditView, 'credits')
 router.register(r'othercredit', OtherCreditView, 'othercredit')
 router.register(r'accounts', AccountView, 'accounts')
+router.register(r'monthlytotal', MonthlyTotalView, 'monthly_total')
 # router.register(r'token', MyTokenObtainPairView, 'token_obtain_pair'),
 router.register(r'token/refresh', MyTokenRefresh, 'token_refresh'),
 router.register(r'register', RegisterView, 'auth_register')
@@ -80,6 +81,10 @@ urlpatterns = [
     path('', UserInfoListView.as_view(), name='userinfo-list'),
     path('users/<int:userid>/', UserInfoDetailView.as_view(), name='userinfo-detail'),
     path('rooms/', RoomListView.as_view(), name='room-list'),
-  #  path('rooms/<int:tenantid>/', RoomAssignDetailView.as_view(), name='room-detail'),
+    path('rooms/show', show, name='show'),
     path('rooms/<int:tenantid>/', RoomAssignDetailView.as_view(), name='room-detail'),
+    path('expenses/', TotalDuePerMonthDetailView.as_view(), name='utility-detail'),
+    path('accounts/<int:user>/', AccountDetailView.as_view(), name='account-detail'),
+
 ]
+

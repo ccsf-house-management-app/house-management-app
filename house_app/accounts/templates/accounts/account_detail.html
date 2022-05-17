@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p><strong>Monthly Bill</strong></p>
+<p>your accounts</p>
+{% for instance in object_list %}
+   <ul>
+   <li>Tenant id: {{ instance.user}} </li>
+   <li>Pay for: {{ instance.bill_type }}</li>
+   <li>Amount: {{ instance.paidamount }}</li>
+   <li>Date: {{ instance.date_paid}}</li>
+   </ul>
+
+{% endfor %}
+
+
+{% endblock %}

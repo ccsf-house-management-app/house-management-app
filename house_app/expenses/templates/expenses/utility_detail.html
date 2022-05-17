@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p><strong>Monthly Bill</strong></p>
+
+{% for instance in object_list %}
+   <ul>
+   <li>Month: {{ instance.formonth}} </li>
+   <li>Year: {{ instance.foryear }}</li>
+   <li>Monthly Due: {{ instance.monthly_due}}</li>
+   <li>Dues Per Tenant: {{ instance.dues_perTenant }}</li>
+   </ul>
+
+
+{% endfor %}
+
+{% endblock %}

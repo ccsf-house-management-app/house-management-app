@@ -44,3 +44,13 @@ class MonthlyDuePerTenant(models.Model):
     formonth = models.IntegerField(blank=True, null=True, choices=MONTHS.items())
     foryear = models.CharField(blank=True, null=True, choices=YEAR, max_length=4, default='2022')
 
+class MonthlyTotal(models.Model):
+    id = models.IntegerField(primary_key=True)
+    firstname = models.CharField(max_length=25)
+    lastname = models.CharField(max_length=10)
+    rent = models.DecimalField(max_digits=6, decimal_places=2)
+    utilities = models.DecimalField(max_digits=6, decimal_places=2)
+    monthly_total = models.DecimalField(max_digits=6, decimal_places=2)
+    formonth = models.IntegerField(blank=True, null=True, choices=MONTHS.items())
+    foryear = models.CharField(blank=True, null=True, choices=YEAR, max_length=4, default='2022')
+

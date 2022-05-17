@@ -26,7 +26,6 @@ class Rooms(models.Model):
 
 class RoomsAssign(models.Model):
     roomid = models.ForeignKey(Rooms, blank=True, null=True, on_delete=models.CASCADE)
-    # tenantid = models.ForeignKey('auth.User', blank=True, null=True, on_delete=models.CASCADE)
     tenantid = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
     date_start = models.DateField(blank=True, null=True)
     date_end = models.DateField(blank=True, null=True)
