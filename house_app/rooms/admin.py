@@ -6,7 +6,7 @@ class RoomsAdmin(admin.ModelAdmin):
     list_display = ( 'roomId', 'roomName', 'roomDescription', 'rent', 'capacity', 'date_created' )
 
 class RoomsAssignAdmin(admin.ModelAdmin):
-    list_display = ( 'roomid', 'tenantid', 'date_start', 'date_end', 'date_transaction', 'transactionId', 'remarks')
+    list_display = ( 'roomid', 'tenantid', 'date_start', 'date_end', 'date_transaction', 'transactionId', 'remarks','formonth','foryear')
 
 # Register your models here.
 admin.site.register(Rooms, RoomsAdmin)

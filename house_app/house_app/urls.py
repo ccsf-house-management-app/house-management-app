@@ -21,10 +21,10 @@ from django.urls import path, include
 # from administration import views
 from users.views import signup, signin, signout, users,UserInfoListView,UserInfoDetailView, UserInfoView,UserInfoDetailsView,UserViewSet
 from pages.views import home_view
-from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView,TenantRoomView,JoinRoomView
-from expenses.views import UtilitiesView
-from credits.views import CreditView
-from accounts.views import AccountView
+from rooms.views import RoomAssignDetailView,RoomListView, RoomsView, RoomsAssignView,TenantRoomView,JoinRoomView, MonthlyTenantView, show
+from expenses.views import UtilitiesView, MonthlyDueView, TotalDuePerMonthView, MonthlyDuePerTenantView,TotalDuePerMonthDetailView, MonthlyTotalView, monthlydues
+from credits.views import CreditView, OtherCreditView
+from accounts.views import AccountView,AccountDetailView
 
 from house_app_users.views import MyTokenObtainPairView, RegisterView, testEndPoint, MyTokenRefresh
 
@@ -42,8 +42,14 @@ router.register(r'roomassign', RoomsAssignView, 'roomassign')
 router.register(r'joinroom', JoinRoomView, 'joinroom')
 router.register(r'tenant', TenantRoomView, 'tenant')
 router.register(r'expenses', UtilitiesView, 'expenses')
+router.register(r'monthlytenant', MonthlyTenantView, 'monthly_tenant')
+router.register(r'monthlydue', MonthlyDueView, 'monthly_due')
+router.register(r'totalduepermonth', TotalDuePerMonthView, 'total_monthly_due')
+router.register(r'duepertenant', MonthlyDuePerTenantView, 'total_monthly_due_per_Tenant')
 router.register(r'credits', CreditView, 'credits')
+router.register(r'othercredit', OtherCreditView, 'othercredit')
 router.register(r'accounts', AccountView, 'accounts')
+router.register(r'monthlytotal', MonthlyTotalView, 'monthly_total')
 # router.register(r'token', MyTokenObtainPairView, 'token_obtain_pair'),
 router.register(r'token/refresh', MyTokenRefresh, 'token_refresh'),
 router.register(r'register', RegisterView, 'auth_register')
@@ -75,6 +81,11 @@ urlpatterns = [
     path('', UserInfoListView.as_view(), name='userinfo-list'),
     path('users/<int:userid>/', UserInfoDetailView.as_view(), name='userinfo-detail'),
     path('rooms/', RoomListView.as_view(), name='room-list'),
-  #  path('rooms/<int:tenantid>/', RoomAssignDetailView.as_view(), name='room-detail'),
+    path('rooms/show', show, name='show'),
     path('rooms/<int:tenantid>/', RoomAssignDetailView.as_view(), name='room-detail'),
+    path('expenses/', TotalDuePerMonthDetailView.as_view(), name='utility-detail'),
+    path('expenses/monthlydues', monthlydues, name='monthlydues'),
+    path('accounts/<int:user>/', AccountDetailView.as_view(), name='account-detail'),
+
 ]
+

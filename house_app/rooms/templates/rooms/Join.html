@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>Current Tenant Room Information</p>
+<table border="1">
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Room Name</td>
+        <td>Rent</td>
+        <td>Date Started</td>
+    </tr>
+{% for data in JoinRoom %}
+    <tr>
+    <td>{{ data.firstname }}</td>
+    <td>{{ data.lastname }}</td>
+    <td>{{ data.roomName }}</td>
+    <td>{{ data.rent }}</td>
+    <td>{{ data.date_start }}</td>
+    </tr>
+
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

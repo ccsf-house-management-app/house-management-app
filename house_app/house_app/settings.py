@@ -97,6 +97,9 @@ DATABASES = {
         'PASSWORD': 'CS195!',
         'HOST': 'gator4144.hostgator.com',
         'PORT': '3306',
+        'TEST': {
+            'NAME': 'jmosuela_test_jmosuela_house_application',
+        },
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },

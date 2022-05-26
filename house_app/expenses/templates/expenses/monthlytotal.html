@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>Current Tenant Monthly Dues</p>
+<table border="1">
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Rent</td>
+        <td>Utilities</td>
+        <td>Total Dues</td>
+        <td>Month</td>
+        <td>Year</td>
+    </tr>
+{% for data in MonthlyTotal %}
+    <tr>
+    <td>{{ data.firstname }}</td>
+    <td>{{ data.lastname }}</td>
+    <td>{{ data.rent }}</td>
+    <td>{{ data.utilities }}</td>
+    <td>{{ data.monthly_total }}</td>
+    <td>{{ data.formonth }}</td>
+    <td>{{ data.foryear }}</td>
+    </tr>
+
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

@@ -5,3 +5,8 @@ class CreditSerializer(serializers.ModelSerializer):
     class Meta:
         model = Credit
         fields = ( 'cruserid', 'formonth', 'foryear', 'crname', 'cracccount', 'cramount', 'date_cr', 'date_done', 'crdescription' )
+
+class OtherCreditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Credit
+        fields = ( 'formonth', 'foryear', 'cramount' )

@@ -5,15 +5,15 @@ from django.contrib.auth import get_user_model
 
 # Create your models here.
 CREDIT_TYPE= (
-    ('a', 'Chores'),
-    ('b', 'Groceries'),
-    ('c','Other')
+    ('Chores', 'Chores'),
+    ('Groceries', 'Groceries'),
+    ('Other','Other')
 )
 
 YEAR = (
-    ('a','2022'),
-    ('b','2023'),
-    ('c','2024'),
+    ('2022','2022'),
+    ('2023','2023'),
+    ('2024','2024'),
 )
 
 class Credit(models.Model):
@@ -35,3 +35,5 @@ class Credit(models.Model):
 
     def __int__(self):
         return self.cruserid
+
+
