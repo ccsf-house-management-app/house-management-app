@@ -2,6 +2,8 @@ from django.conf import settings
 from django.db import models
 
 from users.models import UserInfo
+from django.contrib.auth import get_user_model
+
 
 # Create your models here.
 
@@ -18,9 +20,12 @@ class Rooms(models.Model):
 
 
 class RoomsAssign(models.Model):
+    User = get_user_model()
     roomid = models.ForeignKey(Rooms, blank=True, null=True, on_delete=models.CASCADE)
+    tenantid = models.ForeignKey(
+        User, blank=True, null=True, on_delete=models.CASCADE)
     # tenantid = models.ForeignKey('auth.User', blank=True, null=True, on_delete=models.CASCADE)
-    tenantid = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
+    # tenantid = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
     date_start = models.DateField()
     date_end = models.DateField(blank=True, null=True)
     date_transaction = models.DateField(auto_now=True)
@@ -31,9 +36,12 @@ class RoomsAssign(models.Model):
         return self.tenantid
 
 class JoinRoom(models.Model):
+    User = get_user_model()
     id=models.IntegerField(primary_key=True)
     roomid = models.ForeignKey(Rooms, blank=True, null=True, on_delete=models.CASCADE)
-    tenantid = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
+    tenantid = models.ForeignKey(
+        User, blank=True, null=True, on_delete=models.CASCADE)
+    # tenantid = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
     date_start = models.DateField(blank=True, null=True)
     date_end = models.DateField(blank=True, null=True)
     date_transaction = models.DateField(auto_now=True)

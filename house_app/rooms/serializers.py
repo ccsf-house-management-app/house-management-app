@@ -25,4 +25,4 @@ class TenantRoomSerializer(serializers.ModelSerializer):
     #tenant=serializers.StringRelatedField(many=True)
     class Meta:
         model = Rooms
-        fields = ('roomId', 'tenant')
+        fields = ('roomId', 'tenantid')
