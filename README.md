@@ -7,6 +7,10 @@ This repo contains the Django Back-End application for the "House Management App
  - Python 3
     - `3.8.13` or higher
     - https://www.python.org/downloads/
+ - MySQL Installation for use with the `mysqlclient` python package
+   - On Mac and Linux, use a package manager such as homebrew to install MySQL:
+     - `brew install mysql`
+   - Otherwise, check https://pypi.org/project/mysqlclient/ for recomemndations on connecting a locally installed version of MySQL on Windows.
   - A virtual environment that uses pip to install packages only in this environment
       - Virtualenv: https://virtualenv.pypa.io/en/latest/
       - venv: https://docs.python.org/3/tutorial/venv.html
